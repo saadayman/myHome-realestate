@@ -1,0 +1,52 @@
+<div class="container border p-4">
+  <h1>Register Form</h1>
+  <%- include('error.ejs') %>
+  <form action="/user/register" method="post">
+    <div class="form-group">
+      <label for="name">Name : </label>
+
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        value="<% if(locals.user){%><%=user.name%><%}%>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">email : </label>
+      <% if(locals.error){ %>
+      <small class="text-danger"> <%= error.message %> </small>
+      <% } %>
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        value="<% if(locals.user){%><%=user.email%><%}%>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">password : </label>
+
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        value="<% if(locals.user){%><%=user.password%><%}%>"
+      />
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">confirm-password : </label>
+      <input
+        type="password"
+        class="form-control"
+        name="confirm_password"
+        value="<% if(locals.user){%><%=user.confirm_password%><%}%>"
+      />
+    </div>
+
+    <button type="submit" class="submit-btn btn btn-primary mt-2">
+      Register
+    </button>
+  </form>
+  <p>already have an account? <a href="/user/login">Login here</a></p>
+</div>

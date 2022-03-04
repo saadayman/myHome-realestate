@@ -1,0 +1,30 @@
+
+
+
+<section class="login my-5">
+
+
+<div class="container border p-4">
+    <h1>Login Form</h1>
+    <%- include('./includes/error.ejs') %>
+    <form action="/user/login" method="post" id="login">
+
+        <div class="form-group">
+            <label for="email">email : </label>
+            <input type="text" class="form-control" name="email" value="<%= typeof user !=='undefined' ? user.email : ' ' %>" >
+        </div>
+        <div class="form-group">
+            <label for="password">password : </label>
+            <input type="password" class="form-control" name="password">
+        </div>
+      
+
+        <button type="submit" class="submit-btn btn btn-primary mt-2" id="submit-form">Login</button>
+            
+    </form>
+    <p>dont have an  account? <a href="/user/login">Register here</a></p>
+   
+</div>
+
+</section>
+

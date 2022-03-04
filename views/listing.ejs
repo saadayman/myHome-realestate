@@ -1,0 +1,66 @@
+<section class="latest-listings my-5">
+  <div class="container text-center my-3">
+    <h4 class="text-muted">The Best Deals</h4>
+    <h1>Latest Listings</h1>
+  </div>
+
+  <div class="container my-3">
+    <div
+      class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"
+      data-aos="fade-right"
+      data-aos-duration="1500"
+    >
+      <% if(listing==null || listing.length==0) { %>
+      <h4>There is no listing yet!</h4>
+      <% } else{%> <% listing.forEach(list => { %>
+
+      <div class="col single-list">
+        <div class="card" data-id="<%=list.id%>">
+          <div class="property-info">
+            <div class="house-type"><%= list.propertyType%></div>
+            <div class="property-type"><%= list.propertyFor%></div>
+            <div class="price">$<%= list.propertyPrice%></div>
+          </div>
+          <div class="card-img">
+            <img
+              src="/images/listing_1.jpg.webp"
+              class="card-img-top img-fluid main-img"
+              alt="..."
+            />
+          </div>
+
+          <div class="card-body">
+            <img src="/images/address.webp" alt="address" />
+            <a href="/listings/<%=list.id%>" class="card-text"
+              ><%=list.propertyAddress%></a
+            >
+          </div>
+          <div
+            class="card-footer d-flex align-items-center justify-content-between"
+          >
+            <div class="text-muted">
+              <img src="/images/foot.webp" alt="" />
+              <span><%=list.propertySpace%></span>
+            </div>
+            <div class="text-muted">
+              <img src="/images/bathtub.webp" alt="" /><span
+                ><%=list.bathRooms%></span
+              >
+            </div>
+            <div class="text-muted">
+              <img src="/images/rooms.webp" alt="" /><span
+                ><%=list.bedRooms%></span
+              >
+            </div>
+            <div class="text-muted">
+              <img src="/images/garage.webp" alt="" /><span
+                ><%=list.garages%></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) } %>
+    </div>
+  </div>
+</section>

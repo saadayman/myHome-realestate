@@ -1,0 +1,272 @@
+
+
+
+
+<div class="container addListing-container p-3 my-5">
+    <div class="addListing ">
+      <p>Welcome to myHome</p>
+      <button class="toggle-listing-form-btn btn btn-success" id="listing-form-btn"><i class="fa fa-plus"></i> add a new listings</button>
+    </div>
+  </div>
+  <div class="lsitingForm-Holder">
+  <div class="container hidden" id="addListingContainer" >
+    <div class="form-header d-flex bg-secondary justify-content-between align-items-center p-3  ">
+      <p class="text-white">New property Listing</p>
+      <button class="exit-modal btn btn-lg text-white exit-modal" id="exit-modal" type="button">x</button>
+    </div>
+    <div class="listing-from">
+    
+      <form action="/listings/addlisting"  method="post">
+        <!--Grid form-->
+        <div class="grid-form row row-cols-1 row-cols-md-2">
+          <div class="form-group">
+            <label for="property-type">Property's Type</label>
+            <select name="propertyType" id="property-type" class="form-control" required>
+              <option value="">--Please select--</option>
+              <option value="House">House</option>
+              <option value="Vila">Vila</option>
+              <option value="Compound">Compound</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Office">Office</option>
+              <option value="Commercials">Commercials</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label for="property-for">
+                Property is for :
+            </label>
+            <select name="propertyFor" id="property-for" class="form-control" required>
+                <option value="">--Please select--</option>
+                <option value="Sale">Sale</option>
+                <option value="Rent">Rent</option>
+            </select>
+        </div>
+        </div>
+       <!--Grid form ends-->
+       <div class="grid-form row row-cols-1 row-cols-md-2">
+      <div class="form-group">
+        <label for="property_space">
+            Property's Space :
+        </label>
+        <input type="number" class="form-control " placeholder="example : 1542 sq ft" name="propertySpace" required>
+    </div>
+    <div class="form-group">
+      <label for="propertyPrice">
+          Property's price :
+      </label>
+      <input type="number" class="form-control " placeholder="e.g : $25000" name="propertyPrice" required>
+  </div>
+  </div>
+    <div class="form-group">
+      <label for="Address">Property's Address :</label>
+      <input type="text" class="form-control " name="propertyAddress" placeholder="example : 4812 Haul Road Saint Paul, MN 55102" required>
+  </div>
+  <div class="form-group">
+    <label for="property_bedrooms">
+        Property's Bedrooms :
+    </label>
+    <select name="bedRooms" id="" class="form-control" required>
+        <option value="0">--Please select--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <div class="form-grid">
+        <div class="right-form-grid">
+            <label for="bathRooms">Bathrooms</label>
+            <select name="bathRooms" id="" class="form-control" required>
+                <option value="0">--Please select--</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="left-form-grid">
+            <label for="Property_garages">Garges</label>
+            <select name="garages" id="" class="form-control" required>
+                <option value="0">--Please select--</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="">Say something about the property!</label>
+    <textarea name="description" id="" cols="30" rows="5" placeholder="Property description" class="form-control" required></textarea>
+  </div>
+  <hr>
+  <div class="form-group">
+    <div >
+        <button type="submit" class="btn btn-primary btn-sm">Add Listing</button>
+        <button class="btn btn-secondary btn-sm close-hidden-form-btn exit-modal" type="button" id="exit-modal">Cancel</button>
+    </div>
+  </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="container my-3">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 ">
+    <% if(listing==null || listing.length==0) { %>
+            <h4>There is no listing yet!</h4>
+        <% } else{%>
+    <% listing.forEach(list => { %>
+        
+    <!--card data -->
+    <div class="col"     
+      data-aos="fade-right"
+      data-aos-duration="1500"
+      data-aos-mirror="true"
+       >
+        <div class="card profile-cards" data-id="<%=list.id%>">
+          <div class="ud-container">
+            <button class="btn btn-primary edit-btn" data-listing-id="<%=list.id%>"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="btn btn-danger del-btn" data-listing-id="<%=list.id%>"><i class="fa-solid fa-trash"></i></i></button>
+          </div>
+          <div class="property-info">
+         
+            <div class="house-type"><%= list.propertyType%></div>
+            <div class="property-type"><%= list.propertyFor%></div>
+            <div class="price">$<%= list.propertyPrice%></div>
+          </div>
+          <div class="card-img"> 
+             <img src="/images/listing_1.jpg.webp" class="card-img-top img-fluid main-img" alt="...">
+          </div>
+        
+          <div class="card-body">
+  
+            <img src="/images/address.webp" alt="address">
+            <a href="/listings/<%=list.id%>" class="card-text" ><%=list.propertyAddress%></a>
+          </div>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+            <div class="text-muted"> <img src="/images/foot.webp" alt=""> <span><%=list.propertySpace%></span> </div>
+            <div class="text-muted"> <img src="/images/bathtub.webp" alt=""><span><%=list.bathRooms%></span></div>
+            <div class="text-muted"> <img src="/images/rooms.webp" alt=""><span><%=list.bedRooms%></span></div>
+            <div class="text-muted"> <img src="/images/garage.webp" alt=""><span><%=list.garages%></span></div>
+       
+          </div>
+        </div>
+      </div>
+
+      <!--EDIT FORM-->
+     
+        <div class="container hidden updateListingContainer" id="updateListingContainer" data-update-listing-id="<%=list.id%>">
+          <div class="form-header d-flex bg-secondary justify-content-between align-items-center p-3 ">
+            <p class="text-white">Edit Listing</p>
+            <button class="exit-modal btn btn-lg text-white exit-modal" id="exit-modal" type="button">x</button>
+          </div>
+          <div class="listing-from">
+          
+            <form class="update-form">
+              <!--Grid form-->
+              <div class="grid-form row row-cols-1 row-cols-md-2">
+                <div class="form-group">
+                  <label for="property-type">Property's Type</label>
+                  <select name="propertyType" id="property-type" class="form-control">
+                    <option value="<%=list.propertyType%>"><%=list.propertyType%></option>
+                    <option value="House">House</option>
+                    <option value="Vila">Vila</option>
+                    <option value="Compound">Compound</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Office">Office</option>
+                    <option value="Commercials">Commercials</option>
+                </select>
+                </div>
+                <div class="form-group">
+                  <label for="property-for">
+                      Property is for :
+                  </label>
+                  <select name="propertyFor" id="property-for" class="form-control ">
+                      <option value="<%=list.propertyFor%>"><%=list.propertyFor%></option>
+                      <option value="Sale">Sale</option>
+                      <option value="Rent">Rent</option>
+                  </select>
+              </div>
+              </div>
+             <!--Grid form ends-->
+             <div class="grid-form row row-cols-1 row-cols-md-2">
+            <div class="form-group">
+              <label for="property_space">
+                  Property's Space :
+              </label>
+              <input type="number" class="form-control " placeholder="example : 1542 sq ft" name="propertySpace" value="<%=list.propertySpace%>">
+          </div>
+          <div class="form-group">
+            <label for="propertyPrice">
+                Property's price :
+            </label>
+            <input type="number" class="form-control " placeholder="e.g : $25000" name="propertyPrice" value="<%=list.propertyPrice%>">
+        </div>
+        </div>
+          <div class="form-group">
+            <label for="Address">Property's Address :</label>
+            <input type="text" class="form-control " name="propertyAddress" placeholder="example : 4812 Haul Road Saint Paul, MN 55102" value="<%=list.propertyAddress%>">
+        </div>
+        <div class="form-group">
+          <label for="property_bedrooms">
+              Property's Bedrooms :
+          </label>
+          <select name="bedRooms" id="" class="form-control">
+              <option value="<%=list.bedRooms%>"><%=list.bedRooms%></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-grid">
+              <div class="right-form-grid">
+                  <label for="bathRooms">Bathrooms</label>
+                  <select name="bathRooms" id="" class="form-control">
+                      <option value="<%=list.bathRooms%>"><%=list.bathRooms%></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                  </select>
+              </div>
+              <div class="left-form-grid">
+                  <label for="Property_garages">Garges</label>
+                  <select name="garages" id="" class="form-control">
+                      <option value="<%=list.garages%>"><%=list.garages%></option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                  </select>
+              </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Say something about the property!</label>
+          <textarea name="description" id="" cols="30" rows="5" placeholder="Property description" class="form-control"><%=list.description%></textarea>
+        </div>
+        <hr>
+        <div class="form-group">
+          <div >
+              <button type="submit" class="btn btn-primary btn-sm">Update Listing</button>
+              <button class="btn btn-secondary btn-sm close-hidden-form-btn exit-modal" type="button" id="exit-modal">Cancel</button>
+          </div>
+        </div>
+            </form>
+          </div>
+        </div>
+       
+
+
+
+
+
+      <% }) } %>
+
+    </div>
+</div>
+  

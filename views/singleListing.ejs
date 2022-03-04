@@ -1,0 +1,60 @@
+<section class="listing-details">
+  <div class="container">
+    <div class="text-center my-5">
+      <h3 class="text-muted">THE BEST DEALS</h3>
+      <h1>Listing Details</h1>
+    </div>
+    <div class="card mb-3" data-aos="fade-right" data-aos-duration="1500">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <div class="property-info">
+            <div class="house-type"><%= listing.propertyType%></div>
+            <div class="property-type"><%= listing.propertyFor%></div>
+          </div>
+
+          <img
+            src="/images/listing_2.webp"
+            class="img-fluid rounded-start h-100"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <div class="p-3 card-body-holder">
+              <div class="price">$<%=listing.propertyPrice%></div>
+              <h3><%= listing.propertyType%> for <%= listing.propertyFor%></h3>
+              <h5>
+                <img src="/images/address.webp" alt="address" /> <%=
+                listing.propertyAddress%>
+              </h5>
+              <p><%= listing.description%></p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <img src="/images/foot.webp" alt="" height="20" />
+                <span><%= listing.propertySpace%> <br />sq ft</span>
+              </div>
+              <div>
+                <img src="/images/bathtub.webp" alt="" height="20" />
+                <span><%= listing.bathRooms%> <br />bathrooms</span>
+              </div>
+              <div>
+                <img src="/images/garage.webp" alt="" height="20" />
+                <span
+                  ><%= listing.garages%> <br />
+                  garage</span
+                >
+              </div>
+              <div>
+                <img src="/images/rooms.webp" alt="" height="25" />
+                <span><%= listing.bedRooms%> <br />bedrooms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
