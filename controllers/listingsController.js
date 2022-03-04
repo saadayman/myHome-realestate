@@ -27,7 +27,7 @@ exports.createListing = asyncHandler(async (req, res, next) => {
 
   await Listing.create(req.body);
   console.log(req.body);
-
+  req.flash("success_msg", "List  was created successfully");
   res.redirect("/profile");
   // const listing = await Listing.find()
   // res.render('profile',{
@@ -55,11 +55,13 @@ exports.updateListing = asyncHandler(async (req, res, next) => {
       runValidators: true,
     }
   );
+  req.flash("success_msg", "Listing updated successfully");
   res.json({ sucess: true, data: req.body });
 });
 exports.deleteListing = asyncHandler(async (req, res, next) => {
   console.log(req.query.id);
   await Listing.findByIdAndDelete(req.query.id);
+  req.flash("success_msg", "Listing removed successfully");
   res.json({ sucess: true });
 });
 function Home(key, value) {

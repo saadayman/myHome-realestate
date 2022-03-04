@@ -5,6 +5,7 @@ const exitModalBtns = document.querySelectorAll(".exit-modal");
 
 const updateListingBtn = document.querySelector(".edit-btn");
 const updateListingModal = document.querySelectorAll(".updateListingContainer");
+
 if (listingFormBtn) {
   listingFormBtn.addEventListener("click", (e) => {
     addListingModal.classList.toggle("hidden");

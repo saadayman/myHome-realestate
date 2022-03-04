@@ -1,6 +1,8 @@
 const express = require("express");
 const { pagesErrorHandler, errorHandler } = require("./middlewares/error");
-
+const mongoSanitize = require("express-mongo-sanitize");
+const cors = require("cors");
+const xss_clean = require("xss-clean");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const dotenv = require("dotenv");
@@ -20,6 +22,11 @@ dotenv.config({ path: "config/config.env" });
 const PORT = process.env.PORT;
 //connecting the db
 connectDB();
+//mongo sanitize
+app.use(mongoSanitize());
+
+app.use(cors());
+app.use(xss_clean());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

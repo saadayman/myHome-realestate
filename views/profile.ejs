@@ -8,6 +8,10 @@
       <button class="toggle-listing-form-btn btn btn-success" id="listing-form-btn"><i class="fa fa-plus"></i> add a new listings</button>
     </div>
   </div>
+  <div class="container">
+ <%- include('./includes/error.ejs') %>
+  </div>
+ 
   <div class="lsitingForm-Holder">
   <div class="container hidden" id="addListingContainer" >
     <div class="form-header d-flex bg-secondary justify-content-between align-items-center p-3  ">
@@ -103,7 +107,7 @@
   </div>
   <hr>
   <div class="form-group">
-    <div >
+    <div>
         <button type="submit" class="btn btn-primary btn-sm">Add Listing</button>
         <button class="btn btn-secondary btn-sm close-hidden-form-btn exit-modal" type="button" id="exit-modal">Cancel</button>
     </div>
